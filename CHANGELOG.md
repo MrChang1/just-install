@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 
 ## 2.1.0 - Work In Progress
 
+### Removed
+
+* Just-Install will no longer self-install by copying itself to `%WinDir%\just-install.exe`, users
+  must manually place it there or use the installation script given on the README.md file.
+
+
+## 2.1.0 - Work In Progress
+
 ### Added
 
 * Add support for wrapped installers (e.g. MSI file in a ZIP container). To see how to use this

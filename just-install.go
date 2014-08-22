@@ -36,7 +36,6 @@ import (
 	"strings"
 	"time"
 
-	"bitbucket.org/kardianos/osext"
 	"github.com/codegangsta/cli"
 	"github.com/inconshreveable/go-update"
 	"gopkg.in/cheggaaa/pb.v0"
@@ -45,12 +44,11 @@ import (
 const (
 	REGISTRY        = "https://raw.github.com/lvillani/just-install/master/just-install.json"
 	SELF_UPDATE_URL = "https://github.com/lvillani/just-install/raw/gh-pages/just-install.exe"
-	VERSION         = "2.0.1"
+	VERSION         = "3.0.0"
 )
 
 var (
-	registryPath    = filepath.Join(os.TempDir(), "just-install.json")
-	selfInstallPath = filepath.Join(os.Getenv("WINDIR"), "just-install.exe")
+	registryPath = filepath.Join(os.TempDir(), "just-install.json")
 )
 
 //
@@ -203,8 +201,6 @@ func main() {
 		},
 	}
 	app.Action = func(c *cli.Context) {
-		selfInstall()
-
 		force := c.Bool("force")
 		registry := smartLoadRegistry(false)
 
@@ -282,22 +278,6 @@ func sortedKeys(m map[string]RegistryEntry) []string {
 	sort.Strings(keys)
 
 	return keys
-}
-
-// Copy ourselves to %WINDIR%\just-install.exe in case we are not being executed from there.
-func selfInstall() {
-	executable, err := osext.Executable()
-	if err != nil {
-		log.Println("Unable to determine where I'm running from. Cannot self-install.")
-
-		return
-	}
-
-	if executable != selfInstallPath {
-		log.Println("Self installing to:", selfInstallPath)
-
-		copyFile(os.Args[0], selfInstallPath)
-	}
 }
 
 func copyFile(src string, dst string) error {

@@ -24,8 +24,9 @@ means that it's trivial to add support for new software, seriously,
 
 ## Installation
 
-Download [just-install.exe](http://lvillani.github.io/just-install/just-install.exe) and double
-click it. Boom! `just-install` is now in your `%PATH%`. How easy is that?
+Download [just-install.exe](http://go.just-install.it) and place it in `C:\Windows` or wherever
+you like as long as it is comfortable (`C:\Windows` is already in your `PATH` so, if you place it
+there, you would not have to muck with environment variables).
 
 In a hurry? Here's a mnemonic link you can use to bootstrap a new machine:
 <http://go.just-install.it>
@@ -34,7 +35,7 @@ Feeling geeky? Copy and paste this line in a PowerShell console, then double cli
 `just-install.exe` on your Desktop.
 
 ```posh
-(New-Object System.Net.WebClient).DownloadFile("http://go.just-install.it", "${env:UserProfile}\\Desktop\\just-install.exe")
+(New-Object System.Net.WebClient).DownloadFile("http://go.just-install.it", "${env:WinDir}\\just-install.exe")
 ```
 
 If you are using cmd.exe but have PowerShell available you can run:
